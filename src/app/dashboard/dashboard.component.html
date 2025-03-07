@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="header">
+        <h2>User Management</h2>
+        <button class="add-user-btn" (click)="addUser()">+ Add User</button>
+    </div>
+
+    <table border="1" style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Date of Birth</th>
+                <th>Relevant Entities</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (user of users; track user.userId) {
+            <tr>
+                <td>{{ user.userId }}</td>
+                <td>{{ user.userName }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.mobileNumber }}</td>
+                <td>{{ user.dateOfBirth }}</td>
+                <td>{{ user.role }}</td>
+                <td class="actions">
+                    <span class="edit-icon" (click)="editUser(user)">✏️</span>
+                    <span class="delete-icon" (click)="deleteUser(user)">🗑️</span>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

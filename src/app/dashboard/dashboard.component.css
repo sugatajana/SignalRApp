@@ -1,0 +1,74 @@
+/* Make the container take full width */
+.container {
+    width: 100%;
+    padding: 20px;
+    background: #fff;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 5px;
+}
+
+
+/* Add User Button */
+.add-user-btn {
+    padding: 8px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.add-user-btn:hover {
+    background: #0056b3;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #000;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #000;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Icons */
+.edit-icon,
+.delete-icon {
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.edit-icon:hover {
+    color: #28a745;
+}
+
+.delete-icon:hover {
+    color: #dc3545;
+}
