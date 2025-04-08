@@ -5,4 +5,5 @@ export interface UserDetails {
     mobileNumber: string;
     dateOfBirth: string;
     role: string;
+    orders: any[]; // Assuming OrderResponse is defined in the same file or imported correctly
 }

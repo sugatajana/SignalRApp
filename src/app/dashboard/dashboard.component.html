@@ -26,11 +26,62 @@
                 <td>{{ user.dateOfBirth }}</td>
                 <td>{{ user.role }}</td>
                 <td class="actions">
-                    <span class="edit-icon" (click)="editUser(user)">✏️</span>
-                    <span class="delete-icon" (click)="deleteUser(user)">🗑️</span>
+                    <span class="icon tooltip" (click)="editUser(user)">
+                        <img src="assets/images/file-edit.svg" alt="edit-icon" />
+                        <span class="tooltip-text">Edit User</span>
+                    </span>
+                    <span class="icon tooltip" (click)="deleteUser(user)">
+                        <img src="assets/images/trash.svg" alt="delete-icon" />
+                        <span class="tooltip-text">Edit User</span>
+                    </span>
+                    <span *ngIf="user.orders.length==0" class="icon tooltip" (click)="createOrder(user)">
+                        <img src="assets/images/shopping-bag-add.svg" alt="order-icon" />
+                        <span class="tooltip-text">Make Order</span>
+                    </span>
+                    <span *ngIf="user.orders.length>0" class="icon tooltip" (click)="viewOrder(user.orders, user)">
+                        <img src="assets/images/eye.svg" alt="order-icon" />
+                        <span class="tooltip-text">View Order</span>
+                    </span>
                 </td>
             </tr>
             }
         </tbody>
     </table>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" *ngIf="showOrderModal">
+    <div class="modal">
+        <h3>Create Order for {{ selectedUser?.userName }}</h3>
+
+        <form (ngSubmit)="submitOrder(selectedUser)" [formGroup]="orderForm">
+            <div class="form-group">
+                <label for="description">Order Description</label>
+                <textarea class="input-field" id="description" name="description" formControlName="orderDescription"
+                    rows="3"></textarea>
+                <small *ngIf="orderForm.get('orderDescription')?.invalid && orderForm.get('orderDescription')?.touched">
+                    Order description is required
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Order Status</label>
+                <select id="status" class="input-field" name="status" formControlName="orderStatus" required>
+                    <option value="">-- Select Status --</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Processing">Processing</option>
+                    <option value="Completed">Completed</option>
+                </select>
+                <small class="error"
+                    *ngIf="orderForm.get('orderStatus')?.invalid && orderForm.get('orderStatus')?.touched">
+                    Order status is required
+                </small>
+            </div>
+
+            <div class="modal-actions">
+                <button class="submit-btn" type="submit" [disabled]="orderForm.invalid">Submit Order</button>
+                <button type="button" class="cancel" (click)="closeOrderModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
 </div>
