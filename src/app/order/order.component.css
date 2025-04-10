@@ -1,0 +1,17 @@
+@keyframes blink {
+    0% {
+        background-color: #ffffcc;
+    }
+
+    50% {
+        background-color: #fff;
+    }
+
+    100% {
+        background-color: #ffffcc;
+    }
+}
+
+.highlight-blink {
+    animation: blink 1s ease-in-out infinite;
+}

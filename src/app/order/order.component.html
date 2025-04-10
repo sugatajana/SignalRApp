@@ -18,7 +18,7 @@
         </thead>
         <tbody>
             @for (order of orders; track order.userId) {
-            <tr>
+            <tr [ngClass]="{ 'highlight-blink': order.highlight }">
                 <td>{{ order.orderNumber }}</td>
                 <td>{{ order.user.userName }}</td>
                 <td>{{ order.user.email }}</td>

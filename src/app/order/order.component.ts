@@ -12,8 +12,11 @@ import { SignalrService } from '../services/signalr.service';
 })
 export class OrderComponent implements OnInit, OnDestroy {
   orders: OrderResponse[] = []; // Array to hold order details
+  audio: HTMLAudioElement; // Declare the audio property
 
-  constructor(private orderService: OrderService, private signal: SignalrService) { }
+  constructor(private orderService: OrderService, private signal: SignalrService) {
+    this.audio = new Audio('/assets/audios/order-alert.mp3'); // Initialize the audio property
+  }
 
   ngOnInit(): void {
     // Initialization logic here
@@ -22,10 +25,14 @@ export class OrderComponent implements OnInit, OnDestroy {
 
     this.signal.startConnection('Orders', {
       'OrderCreated': (data: any) => {
-        console.log('New order created:', data);
         const orderData = JSON.parse(data); // Parse the JSON string to an object
+        orderData.highlight = true; // Add a highlight property to the order data
         this.orders.push(orderData); // Add the new order to the orders array
-        console.log(this.orders); // Log the updated orders array
+        this.audio.play(); // Play the sound
+
+        setTimeout(() => {
+          orderData.highlight = false; // Remove the highlight after 5 seconds
+        }, 20000); // Optional: Delay before playing the sound again
       },
       // 'OrderUpdated': (data: OrderResponse) => {
       //   console.log('Order updated:', data);

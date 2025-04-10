@@ -8,4 +8,5 @@ export interface OrderResponse {
     orderDate: string;
     userId: number;
     user: UserDetails;
+    highlight?: boolean; // Optional property for highlighting
 }
