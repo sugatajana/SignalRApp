@@ -34,13 +34,9 @@
                         <img src="assets/images/trash.svg" alt="delete-icon" />
                         <span class="tooltip-text">Edit User</span>
                     </span>
-                    <span *ngIf="user.orders.length==0" class="icon tooltip" (click)="createOrder(user)">
+                    <span class="icon tooltip" (click)="createOrder(user)">
                         <img src="assets/images/shopping-bag-add.svg" alt="order-icon" />
                         <span class="tooltip-text">Make Order</span>
-                    </span>
-                    <span *ngIf="user.orders.length>0" class="icon tooltip" (click)="viewOrder(user.orders, user)">
-                        <img src="assets/images/eye.svg" alt="order-icon" />
-                        <span class="tooltip-text">View Order</span>
                     </span>
                 </td>
             </tr>
